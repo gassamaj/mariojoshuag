@@ -26,24 +26,16 @@ game.PlayerEntity = me.Entity.extend({
 
   update: function(delta) {
       if(me.input.isKeyPressed("right") ) {
-          this.body.vel.x += this.body.accel.accel.x * me.timer.tick;
+          this.body.vel.x += this.body.accel.x * me.timer.tick;
       }else{
           this.body.vel.x = 0;
       }
       
-      this.body.update(delta);
-      return true;
-}       
-         
+     this.body.update(delta);
+     return true;
+  }
+
 });
-    
-    
-
-
-
-
-
-
 
 
 
