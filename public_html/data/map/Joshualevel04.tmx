@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="9" tilewidth="70" tileheight="70" backgroundcolor="#00aa00">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="100" tilewidth="70" tileheight="70">
  <tileset firstgid="1" name="background-tiles" tilewidth="70" tileheight="70">
   <image source="../img/background-tiles.png" width="910" height="910"/>
  </tileset>
- <layer name="background" width="16" height="9">
+ <layer name="Tile Layer 1" width="16" height="100">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFIxnYUogBg+AD0Q==
+   eJztwzENAAAMA6AarH87FbFnByQkAAAAAAAAv/R4vKAE0Q==
   </data>
  </layer>
- <objectgroup name="Object Layer 1" visible="0"/>
 </map>
