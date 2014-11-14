@@ -12,7 +12,11 @@ game.PlayerEntity = me.Entity.extend({
       }
   }]);
     
-    this.body.setVelocity(5, 20);
+   this.renderable.addAnimation("idle", [3]);
+   
+   this.renderable.setCurrentAnimation("idle");   
+      
+      this.body.setVelocity(5, 20);
   },
     
     update: function (delta) {
