@@ -8,7 +8,7 @@ game.PlayScreen = me.ScreenObject.extend({
                 
 		me.levelDirector.loadLevel("JoshuaLevel01");
             
-                 this.resetPlayer();
+                 this.resetPlayer(0, 400);
             
             me.input.bindKey(me.input.KEY.RIGHT, "right");
             
@@ -17,7 +17,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	    me.game.world.addChild(this.HUD);
         },
 
-         
+       
 	/**
 	 *  action to perform when leaving this screen (state change)
 	 */
@@ -26,8 +26,8 @@ game.PlayScreen = me.ScreenObject.extend({
           me.game.world.remove.removeChild(this.HUD);
           },
           
-          resetPlayer: function() {
-               var player = me.pool.pull("mario", 0, 420, {});
+          resetPlayer: function(x, y) {
+               var player = me.pool.pull("mario", x, y, {});
                me.game.world.addChild(player, 3);
            }
            });
