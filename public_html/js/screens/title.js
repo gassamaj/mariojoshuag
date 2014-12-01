@@ -15,8 +15,8 @@ game.TitleScreen = me.ScreenObject.extend({
             
             draw: function(renderer){
                this.font.draw(renderer.getContext(), "Marioish", 450, 130);
-               this.font.draw(renderer.getContext(), "Press Enter to play!", 250, 530);
-            }
+               this.font.draw(renderer.getContext(), "Press Enter to play!", 250, 530); 
+            } 
             
             })));
             
@@ -33,7 +33,8 @@ game.TitleScreen = me.ScreenObject.extend({
         *  action to perform when leaving this screen (state change)
         */
         onDestroyEvent: function () {
-        me.input.unbindKey(me.input.KEY.ENTER);
+        me.event.unsubscribe(this.handler) 
+            me.input.unbindKey(me.input.KEY.ENTER);
         }   
         });
        
