@@ -55,7 +55,7 @@ game.PlayerEntity = me.Entity.extend({
 
 });
     
-game.levelTrigger = me.Entity.extend({
+game.LevelTrigger = me.Entity.extend({
     init: function(x, y, settings) {
         this._super(me.Entity, 'init', [x, y, settings]);
         this.body.onCollision = this.onCollision.bind(this);
@@ -72,5 +72,23 @@ game.levelTrigger = me.Entity.extend({
 
 });
     
+game.BadGuy = me.Entity.extend({
+    init: function(x, y, settings){
+            this._super (me.Entity, 'init',[x,y, {
+     image: "slime",
+     spritewidth: "60",
+     spriteheight: "28",
+     width: 60,
+     height: 28,
+     getShape: function(){
+          return (new me.Rect(0, 0, 60, 28)).toPolygon();
+      }
+  }]);
+    },
     
+   update: function(delta) {
+       
+   }
+
+});
     
