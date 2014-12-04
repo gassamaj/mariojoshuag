@@ -110,9 +110,16 @@ game.BadGuy = me.Entity.extend({
      me.collision.check(this, true, this.collideHandler.bind(this), true);
      
    if (this.alive) {
+       if(this.walkLeft && this.pos.x <= this.startX) {
+          this.walkLeft = false;
+       }else if (!this.walkLeft && this.pos.x >= this.endX){
+           this.walkLeft = true;
+       }
+       this.flipX(!this.walkLeft);
+       this.body.vel.x += (this.walkLeft) ? -this.body.accel.x * me.timer.tick : this.body.accel.x * me.timer.tick;  
        
-   }else{
-       me.game.world.removeChild(this)
+       }else{
+       me.game.world.removeChild(this);
    }
     
        
