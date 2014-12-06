@@ -45,9 +45,11 @@ game.PlayerEntity = me.Entity.extend({
         this._super(me.Entity, "update", [delta]);
         return true;
     },
+    
     collideHandler: function(response) {
         if (response.b.type === 'badguy') {
             me.state.change(me.state.MENU);
+        
         }
 
     }
@@ -122,13 +124,15 @@ game.BadGuy = me.Entity.extend({
         this._super(me.Entity, "update", [delta]);
         return true;
     },
-    collideHandler: function() {
-
+    collideHandler: function(response) {
+    if(response.b.type === 'badguy') {
+        me.state.change(me.state.MENU);
     }
-
-
-});
-
+    
+        }
+    
+    
+    });
 
 
 
