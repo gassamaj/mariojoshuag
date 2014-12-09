@@ -22,6 +22,7 @@ game.PlayerEntity = me.Entity.extend({
         this.body.setVelocity(5, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
+    
     update: function(delta) {
         if (me.input.isKeyPressed("right")) {
             this.body.vel.x += this.body.accel.x * me.timer.tick;
@@ -60,9 +61,11 @@ game.PlayerEntity = me.Entity.extend({
            }else{
             me.state.change(me.state.MENU);
                }
+        }else if (response.b.type ===  'mushroom'){
+            console.log("Big!");
         }
-
-    }
+    
+        }
 
 });
 
