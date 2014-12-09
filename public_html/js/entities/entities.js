@@ -13,11 +13,14 @@ game.PlayerEntity = me.Entity.extend({
             }]);
 
         this.renderable.addAnimation("idle", [3]);
+        this.renderable.addAnimation("bigIdle", [19]);
         this.renderable.addAnimation("smallWalk", [8, 9, 10, 11, 12, 13], 80);
-
+        this.renderable.addAnimation("bigWalk",[14, 15, 16, 17, 18, 19], 80);
+        
+        
         this.renderable.setCurrentAnimation("idle");
-
-
+        
+          this.big = false;
         //The first number sets the speed the character moves on the x axis and the second sets the speed on the y axis    
         this.body.setVelocity(5, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -33,27 +36,40 @@ game.PlayerEntity = me.Entity.extend({
 
         this.body.update(delta);
         me.collision.check(this, true, this.collideHandler.bind(this), true);
-
-        if (this.body.vel.x !== 0) {
-            if (!this.renderable.isCurrentAnimation("smallWalk")) {
-                this.renderable.setCurrentAnimation("smallWalk");
-                this.renderable.setAnimationFrame();
+        
+        if(!this.big){
+            if (this.body.vel.x !== 0) {
+                if (!this.renderable.isCurrentAnimation("smallWalk")) {
+                    this.renderable.setCurrentAnimation("smallWalk");
+                    this.renderable.setAnimationFrame();
+                }
+            } else {
+                this.renderable.setCurrentAnimation("idle");
             }
-        } else {
-            this.renderable.setCurrentAnimation("idle");
+            }else{
+           if (this.body.vel.x !== 0) {
+                if (!this.renderable.isCurrentAnimation("bigWalk")) {
+                    this.renderable.setCurrentAnimation("bigWalk");
+                    this.renderable.setAnimationFrame();
+                }
+            } else {
+                this.renderable.setCurrentAnimation("bigIdle");
+            }
         }
-
-
-
+        
+        
+        
         this._super(me.Entity, "update", [delta]);
         return true;
     },
     
-    collideHandler: function(response) {
+    collideHandler: function(response){
+        
         
         //ydif takes the position of mario on the y axis and subtracts the position of whatevver mario runs into to show how far apart they are
-        var ydif = this.pos.y - response.b.pos.y;
+        var ydif = this.pos.y - response.b.pos.y;       
         console.log(ydif);
+;
         
         if (response.b.type === 'badguy') {
            if(ydif <= -115) {
@@ -62,8 +78,9 @@ game.PlayerEntity = me.Entity.extend({
             me.state.change(me.state.MENU);
                }
         }else if (response.b.type ===  'mushroom'){
-            console.log("Big!");
-        }
+            this.big = true;
+                        me.game.world.removeChild(response.b);
+                    }
     
         }
 
