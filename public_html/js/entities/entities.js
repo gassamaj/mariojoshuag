@@ -17,6 +17,8 @@ game.PlayerEntity = me.Entity.extend({
 
         this.renderable.setCurrentAnimation("idle");
 
+
+        //The first number sets the speed the character moves on the x axis and the second sets the speed on the y axis    
         this.body.setVelocity(5, 20);
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     },
@@ -47,6 +49,8 @@ game.PlayerEntity = me.Entity.extend({
     },
     
     collideHandler: function(response) {
+        
+        //ydif takes the position of mario on the y axis and subtracts the position of whatevver mario runs into to show how far apart they are
         var ydif = this.pos.y - response.b.pos.y;
         console.log(ydif);
         
@@ -90,6 +94,7 @@ game.BadGuy = me.Entity.extend({
                     return (new me.Rect(0, 0, 60, 28)).toPolygon();
                 }
             }]);
+        
         this.spritewidth = 60;
         var width = settings.width;
         x = this.pos.x;
@@ -139,6 +144,29 @@ game.BadGuy = me.Entity.extend({
     
     
     });
+
+game.Mushroom = me.Entity.extend({
+    init: function(x, y, settings) {
+        this._super(me.Entity, 'init', [x, y, {
+                image: "mushroom",
+                spritewidth: "64",
+                spriteheight: "64",
+                width: 64,
+                height: 64,
+                getShape: function() {
+                    return (new me.Rect(0, 0, 64, 64)).toPolygon();
+                }
+            }]);
+    
+        me.collision.check(this);
+        this.type = "mushroom";
+    }
+
+});
+
+
+
+
 
 
 
